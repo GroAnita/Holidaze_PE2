@@ -77,4 +77,8 @@
   --color-feedback-info-text: var(--holidaze-feedback-info-text);
   --color-feedback-note-background: var(--holidaze-feedback-note-background);
   --color-feedback-note-text: var(--holidaze-feedback-note-text);
+
+  --font-manrope: var(--font-manrope);
+  --font-playfair-display: var(--font-playfair-display);
+  --font-italiana: var(--font-italiana);
 }
