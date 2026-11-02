@@ -1,26 +1,80 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --holidaze-background: #eeebdd;
+  --holidaze-surface: #faf8f0;
+  --holidaze-text-primary: #171918;
+  --holidaze-text-muted: #505a35;
+  --holidaze-border-control: #777f79;
+  --holidaze-action-background: #d5ff3f;
+  --holidaze-action-hover: #b4d72e;
+  --holidaze-action-text: #171918;
+  --holidaze-link: #505a35;
+  --holidaze-footer: #384413;
+  --holidaze-focus-ring: #505a35;
+  --holidaze-feedback-error-background: #fce8e8;
+  --holidaze-feedback-error-text: #8e2635;
+  --holidaze-feedback-warning-background: #fff1cb;
+  --holidaze-feedback-warning-text: #684b08;
+  --holidaze-feedback-success-background: #e5efdf;
+  --holidaze-feedback-success-text: #285337;
+  --holidaze-feedback-info-background: #e4ecf7;
+  --holidaze-feedback-info-text: #284d7d;
+  --holidaze-feedback-note-background: #e9ebe8;
+  --holidaze-feedback-note-text: #424a44;
+}
+
+/* Dark export has no footer token; it inherits the light footer #384413. */
+.dark {
+  color-scheme: dark;
+  --holidaze-background: #171918;
+  --holidaze-surface: #242825;
+  --holidaze-text-primary: #eeebdd;
+  --holidaze-text-muted: #a8aeaa;
+  --holidaze-border-control: #777f79;
+  --holidaze-action-background: #d5ff79;
+  --holidaze-action-hover: #b4d72e;
+  --holidaze-action-text: #171918;
+  --holidaze-link: #d5ff3f;
+  --holidaze-focus-ring: #d5ff3f;
+  --holidaze-feedback-error-background: #3d2028;
+  --holidaze-feedback-error-text: #ffb4be;
+  --holidaze-feedback-warning-background: #342c18;
+  --holidaze-feedback-warning-text: #f2d482;
+  --holidaze-feedback-success-background: #203427;
+  --holidaze-feedback-success-text: #b8dcac;
+  --holidaze-feedback-info-background: #202d40;
+  --holidaze-feedback-info-text: #b7d2f5;
+  --holidaze-feedback-note-background: #242825;
+  --holidaze-feedback-note-text: #c9cfca;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --color-background: var(--holidaze-background);
+  --color-surface: var(--holidaze-surface);
+  --color-text-primary: var(--holidaze-text-primary);
+  --color-text-muted: var(--holidaze-text-muted);
+  --color-border-control: var(--holidaze-border-control);
+  --color-action-background: var(--holidaze-action-background);
+  --color-action-hover: var(--holidaze-action-hover);
+  --color-action-text: var(--holidaze-action-text);
+  --color-link: var(--holidaze-link);
+  --color-footer: var(--holidaze-footer);
+  --color-focus-ring: var(--holidaze-focus-ring);
+  --color-feedback-error-background: var(--holidaze-feedback-error-background);
+  --color-feedback-error-text: var(--holidaze-feedback-error-text);
+  --color-feedback-warning-background: var(
+    --holidaze-feedback-warning-background
+  );
+  --color-feedback-warning-text: var(--holidaze-feedback-warning-text);
+  --color-feedback-success-background: var(
+    --holidaze-feedback-success-background
+  );
+  --color-feedback-success-text: var(--holidaze-feedback-success-text);
+  --color-feedback-info-background: var(--holidaze-feedback-info-background);
+  --color-feedback-info-text: var(--holidaze-feedback-info-text);
+  --color-feedback-note-background: var(--holidaze-feedback-note-background);
+  --color-feedback-note-text: var(--holidaze-feedback-note-text);
 }
