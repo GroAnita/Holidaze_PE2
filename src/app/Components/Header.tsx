@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { getProfile } from "../lib/api/auth/session";
 
-export default function Header() {
+export default async function Header() {
+  const profile = await getProfile();
   return (
     <header className="bg-holidaze-background p-4 dark:bg-black">
       <section className="flex items-center justify-between">
@@ -11,12 +13,18 @@ export default function Header() {
           <Link href="/" className="text-feedback-success-text dark:text-white">
             Explore
           </Link>
-          <Link
-            href="/login"
-            className="text-feedback-success-text dark:text-white"
-          >
-            LogIn
-          </Link>
+          {profile ? (
+            <span className="text-feedback-success-text dark:text-white">
+              {profile.name}
+            </span>
+          ) : (
+            <Link
+              href="/login"
+              className="text-feedback-success-text dark:text-white"
+            >
+              LogIn
+            </Link>
+          )}
         </div>
       </section>
     </header>
