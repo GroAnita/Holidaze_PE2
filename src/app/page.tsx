@@ -1,4 +1,5 @@
 import { getVenues } from "./lib/api/venues";
+import VenueCard from "./Components/VenueCard";
 
 export default async function Home() {
   const { data: venues } = await getVenues();
@@ -9,6 +10,11 @@ export default async function Home() {
           Welcome to Holidaze
         </h1>
         <p> Fetched {venues.length} venues</p>
+        <div className="grid grid-cols-3 gap-4">
+          {venues.map((venue) => (
+            <VenueCard key={venue.id} venue={venue} />
+          ))}
+        </div>
       </main>
     </div>
   );

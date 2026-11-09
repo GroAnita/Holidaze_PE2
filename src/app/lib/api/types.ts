@@ -53,3 +53,20 @@ export type ApiKeyResponseData = {
   name: string;
   key: string;
 };
+
+export type VenueMeta = {
+  wifi?: boolean;
+  parking?: boolean;
+  pets?: boolean;
+  breakfast?: boolean;
+};
+
+export type Location = {
+  city: string;
+  country: string;
+  address?: string;
+  zip?: string;
+  continent?: string;
+  lat?: number;
+  lng?: number;
+};
