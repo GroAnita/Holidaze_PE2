@@ -70,3 +70,21 @@ export type Location = {
   lat?: number;
   lng?: number;
 };
+
+export type Profile = {
+  name: string;
+  email: string;
+  bio?: string;
+  avatar?: Media;
+  banner?: Media;
+  venueManager: boolean;
+};
+
+export type Booking = {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  updated: string;
+  customer?: Profile;
+};

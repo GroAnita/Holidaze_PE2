@@ -1,5 +1,5 @@
 import { apiFetch } from "./client";
-import type { Location, Media, VenueMeta } from "./types";
+import type { Booking, Location, Media, Profile, VenueMeta } from "./types";
 
 export type Venue = {
   id: string;
@@ -13,6 +13,8 @@ export type Venue = {
   updated: string;
   meta: VenueMeta;
   location: Location;
+  bookings?: Booking[];
+  owner?: Profile;
 };
 
 type VenuesResponse = {
@@ -37,5 +39,7 @@ type VenueResponse = {
 };
 
 export function getVenue(id: string) {
-  return apiFetch<VenueResponse>(`/holidaze/venues/${id}`);
+  return apiFetch<VenueResponse>(
+    `/holidaze/venues/${id}?_bookings=true&_owner=true`,
+  );
 }

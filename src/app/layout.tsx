@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${playfairDisplay.variable} ${italiana.variable} ${sourceSansPro.variable} h-full antialiased`}
+      className={`${manrope.variable} ${playfairDisplay.variable} ${italiana.variable} ${sourceSansPro.variable} h-full scroll-smooth antialiased`}
     >
       <body className="bg-background flex min-h-full flex-col dark:bg-black">
         <Suspense fallback={<div className="h-18" />}>

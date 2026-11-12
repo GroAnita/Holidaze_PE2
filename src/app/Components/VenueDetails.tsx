@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import VenueGallery from "./VenueGallery";
 import VenueHeader from "./VenueHeader";
 import { ApiError } from "@/app/lib/api/types";
+import VenueTabs from "./VenueTabs";
+import VenueMap from "./VenueMap";
+import VenueAbout from "./VenueAbout";
+import VenueStayPicker from "./VenueStayPicker";
 
 type VenueDetailsProps = {
   id: string;
@@ -22,6 +26,7 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
     }
     throw error;
   }
+
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-8">
       <section className="mx-auto mb-8">
@@ -31,7 +36,35 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
           rating={venue.rating}
         />
       </section>
-      <VenueGallery media={venue.media} venueName={venue.name} />
+      <section id="images">
+        <VenueGallery media={venue.media} venueName={venue.name} />
+      </section>
+      <div className="mt-6">
+        <VenueTabs venueName={venue.name} />
+      </div>
+      <div className="grid gap-12 py-8 md:grid-cols-2">
+        <section id="about">
+          <VenueAbout
+            description={venue.description}
+            maxGuests={venue.maxGuests}
+            meta={venue.meta}
+            location={venue.location}
+          />
+        </section>
+        <section id="map">
+          <VenueMap location={venue.location} venueName={venue.name} />
+        </section>
+      </div>
+      <section id="your-stay" className="py-8">
+        <VenueStayPicker
+          maxGuests={venue.maxGuests}
+          bookings={venue.bookings ?? []}
+        />
+      </section>
+
+      <section id="policies" className="py-8">
+        {/* coming later */}
+      </section>
     </main>
   );
 }

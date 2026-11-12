@@ -9,7 +9,7 @@ export default function VenueNotFound() {
       <p className="text-text-muted font-manrope">
         This venue doesn&apos;t exist or has been removed.
       </p>
-      <Button href="/venues">Back to Venues</Button>
+      <Button href="/">Back to Venues</Button>
     </main>
   );
 }
