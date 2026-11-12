@@ -1,30 +1,18 @@
 import { apiFetch } from "./client";
+import type { Location, Media, VenueMeta } from "./types";
 
 export type Venue = {
   id: string;
   name: string;
   description: string;
-  media: { url: string; alt: string }[];
+  media: Media[];
   price: number;
   maxGuests: number;
   rating: number;
   created: string;
   updated: string;
-  meta: {
-    wifi: boolean;
-    parking: boolean;
-    breakfast: boolean;
-    pets: boolean;
-  };
-  location: {
-    address: string;
-    city: string;
-    zip: string;
-    country: string;
-    continent: string;
-    lat: number;
-    lng: number;
-  };
+  meta: VenueMeta;
+  location: Location;
 };
 
 type VenuesResponse = {
@@ -42,4 +30,12 @@ type VenuesResponse = {
 
 export function getVenues() {
   return apiFetch<VenuesResponse>("/holidaze/venues");
+}
+
+type VenueResponse = {
+  data: Venue;
+};
+
+export function getVenue(id: string) {
+  return apiFetch<VenueResponse>(`/holidaze/venues/${id}`);
 }

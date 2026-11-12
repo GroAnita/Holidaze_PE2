@@ -24,6 +24,7 @@
   --holidaze-feedback-info-text: #284d7d;
   --holidaze-feedback-note-background: #e9ebe8;
   --holidaze-feedback-note-text: #424a44;
+  --holidaze-cta-secondary: #505a35;
 }
 
 /* Dark export has no footer token; it inherits the light footer #384413. */
@@ -68,6 +69,7 @@
   --color-feedback-warning-background: var(
     --holidaze-feedback-warning-background
   );
+  --color-cta-secondary: var(--holidaze-cta-secondary);
   --color-feedback-warning-text: var(--holidaze-feedback-warning-text);
   --color-feedback-success-background: var(
     --holidaze-feedback-success-background
@@ -81,4 +83,5 @@
   --font-manrope: var(--font-manrope);
   --font-playfair-display: var(--font-playfair-display);
   --font-italiana: var(--font-italiana);
+  --font-source-sans-pro: var(--font-source-sans-pro);
 }

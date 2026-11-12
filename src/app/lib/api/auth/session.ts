@@ -26,10 +26,15 @@ export async function getToken() {
   return cookieStore.get(TOKEN_COOKIE)?.value;
 }
 
-export async function getProfile() {
+export async function getProfile(): Promise<AuthProfile | null> {
   const cookieStore = await cookies();
   const raw = cookieStore.get(PROFILE_COOKIE)?.value;
-  return raw ? JSON.parse(raw) : null;
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as AuthProfile;
+  } catch {
+    return null;
+  }
 }
 
 export async function clearSession() {

@@ -4,7 +4,7 @@ import { getProfile } from "../lib/api/auth/session";
 export default async function Header() {
   const profile = await getProfile();
   return (
-    <header className="bg-holidaze-background p-4 dark:bg-black">
+    <header className="bg-background p-4 dark:bg-black">
       <section className="flex items-center justify-between">
         <h1 className="text-feedback-success-text font-italiana text-4xl font-bold dark:text-white">
           Holidaze

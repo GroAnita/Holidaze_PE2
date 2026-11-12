@@ -1,7 +1,8 @@
+"server-only";
 import { ApiError, type ApiErrorResponse } from "./types";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const API_KEY = process.env.API_KEY;
 
 type ApiFetchOptions = Omit<RequestInit, "body"> & {
   body?: unknown;
