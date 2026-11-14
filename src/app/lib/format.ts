@@ -5,3 +5,24 @@ export function formatPrice(amount: number) {
 export function getInitials(name: string) {
   return name.slice(0, 2).toUpperCase();
 }
+
+export function toLocalDate(isoString: string) {
+  return new Date(`${isoString.slice(0, 10)}T00:00`);
+}
+
+export function formatDate(date: Date) {
+  return date.toLocaleDateString("nb-NO", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+export function nightsBetween(fromIso: string, toIso: string) {
+  const ms = toLocalDate(toIso).getTime() - toLocalDate(fromIso).getTime();
+  return Math.round(ms / (1000 * 60 * 60 * 24));
+}
+
+export function pluralize(count: number, word: string) {
+  return `${count} ${word}${count === 1 ? "" : "s"}`;
+}

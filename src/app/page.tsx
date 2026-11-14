@@ -1,5 +1,5 @@
 import { getVenues } from "./lib/api/venues";
-import VenueCard from "./Components/VenueCard";
+//import VenueCard from "./Components/VenueCard";
 import { Suspense } from "react";
 import Hero from "./Components/Hero";
 import Link from "next/link";
