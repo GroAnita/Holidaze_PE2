@@ -1,5 +1,6 @@
-import { Venue } from "../lib/api/venues";
 import Image from "next/image";
+import type { Venue } from "../lib/api/venues";
+import { formatPrice } from "../lib/format";
 import VcIconBar from "./VcIconBar";
 import Button from "./Button";
 
@@ -11,28 +12,41 @@ export default function VenueCard({ venue }: VenueCardProps) {
   const image = venue.media[0];
 
   return (
-    <div className="venue-card bg-surface border-border-control w-90 overflow-hidden rounded-xl">
-      <div className="relative h-48 w-full">
+    <article className="bg-surface flex h-full flex-col overflow-hidden rounded-xl">
+      <div className="relative aspect-[16/10] w-full">
         <Image
-          src={image?.url ?? "/file.svg"}
+          src={image?.url ?? "/gallery-placeholder.png"}
           alt={image?.alt || venue.name}
           fill
           className="object-cover"
         />
       </div>
-      <h2 className="text-text-primary font-source-sans-pro px-2 text-2xl font-normal">
-        {venue.name}
-      </h2>
-      <section className="flex flex-row items-center justify-between px-2">
-        <h3 className="text-text-primary font-manrope text-lg font-semibold">
-          {venue.location.city}
-        </h3>
-        <VcIconBar meta={venue.meta} />
-      </section>
-      <p className="text-text font-manrope px-2 text-sm">{venue.description}</p>
-      <div className="px-2 py-2">
-        <Button href={`/venues/${venue.id}`}>Book Now</Button>
+
+      <div className="flex flex-1 flex-col p-4">
+        <div className="flex items-start justify-between gap-4">
+          <h2 className="text-text-primary font-playfair-display text-2xl">
+            {venue.name}
+          </h2>
+          <VcIconBar meta={venue.meta} />
+        </div>
+
+        <p className="font-manrope text-text-primary mt-2 flex items-baseline gap-2">
+          <span className="font-semibold tracking-wide">
+            {venue.location.city}
+          </span>
+          <span className="text-xs uppercase">{venue.location.country}</span>
+        </p>
+
+        <div className="mt-auto flex items-end justify-between pt-6">
+          <div>
+            <p className="text-text-primary text-sm">Price/night</p>
+            <p className="font-manrope text-text-primary text-lg font-semibold">
+              {formatPrice(venue.price)}
+            </p>
+          </div>
+          <Button href={`/venues/${venue.id}`}>View stay</Button>
+        </div>
       </div>
-    </div>
+    </article>
   );
 }

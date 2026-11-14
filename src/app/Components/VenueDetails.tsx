@@ -7,6 +7,7 @@ import VenueTabs from "./VenueTabs";
 import VenueMap from "./VenueMap";
 import VenueAbout from "./VenueAbout";
 import VenueStayPicker from "./VenueStayPicker";
+import { getProfile } from "@/app/lib/api/auth/session";
 
 type VenueDetailsProps = {
   id: string;
@@ -26,6 +27,7 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
     }
     throw error;
   }
+  const profile = await getProfile();
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-8">
@@ -59,6 +61,8 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
         <VenueStayPicker
           maxGuests={venue.maxGuests}
           bookings={venue.bookings ?? []}
+          price={venue.price}
+          isLoggedIn={Boolean(profile)}
         />
       </section>
 

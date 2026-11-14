@@ -4,10 +4,13 @@ import { Calendar, Users } from "lucide-react";
 import { DayPicker, type DateRange } from "react-day-picker";
 import "react-day-picker/style.css";
 import type { Booking } from "@/app/lib/api/types";
+import BookingSummary from "./BookingSummary";
 
 type VenueStayPickerProps = {
   maxGuests: number;
   bookings: Booking[];
+  price: number;
+  isLoggedIn: boolean;
 };
 
 function toLocalDate(isoString: string) {
@@ -41,6 +44,8 @@ const calendarColors = {
 export default function VenueStayPicker({
   maxGuests,
   bookings,
+  price,
+  isLoggedIn,
 }: VenueStayPickerProps) {
   const [range, setRange] = useState<DateRange | undefined>();
   const [guests, setGuests] = useState(1);
@@ -169,11 +174,15 @@ export default function VenueStayPicker({
         </label>
       </div>
 
-      {nights > 0 && (
-        <p className="text-text-muted mt-4">
-          {nights} {nights === 1 ? "night" : "nights"}
-        </p>
-      )}
+      <div className="mt-8">
+        <BookingSummary
+          range={range}
+          nights={nights}
+          guests={guests}
+          price={price}
+          isLoggedIn={isLoggedIn}
+        />
+      </div>
     </div>
   );
 }
