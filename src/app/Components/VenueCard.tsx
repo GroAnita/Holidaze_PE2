@@ -13,7 +13,7 @@ export default function VenueCard({ venue }: VenueCardProps) {
 
   return (
     <article className="bg-surface flex h-full flex-col overflow-hidden rounded-xl">
-      <div className="relative aspect-[16/10] w-full">
+      <div className="relative aspect-16/10 w-full">
         <Image
           src={image?.url ?? "/gallery-placeholder.png"}
           alt={image?.alt || venue.name}

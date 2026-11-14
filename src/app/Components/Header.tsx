@@ -6,9 +6,12 @@ export default async function Header() {
   return (
     <header className="bg-background p-4 dark:bg-black">
       <section className="flex items-center justify-between">
-        <h1 className="text-feedback-success-text font-italiana text-4xl font-normal dark:text-white">
+        <Link
+          href="/"
+          className="text-feedback-success-text font-italiana text-4xl font-normal dark:text-white"
+        >
           HOLIDAZE
-        </h1>
+        </Link>
         <div className="flex gap-4">
           <Link href="/" className="text-feedback-success-text dark:text-white">
             Explore

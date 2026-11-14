@@ -18,7 +18,7 @@ export default function RegisterPage() {
             <br />
             share your own space.
           </p>
-          <div className="relative aspect-[4/3] w-full max-w-sm overflow-hidden rounded-xl">
+          <div className="relative aspect-4/3 w-full max-w-sm overflow-hidden rounded-xl">
             <Image
               src="/register-hero.jpg"
               alt="Resort pool surrounded by palm trees"
