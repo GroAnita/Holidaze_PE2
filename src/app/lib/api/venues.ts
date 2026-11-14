@@ -30,8 +30,29 @@ type VenuesResponse = {
   };
 };
 
-export function getVenues() {
-  return apiFetch<VenuesResponse>("/holidaze/venues");
+type GetVenuesOptions = {
+  page?: number;
+  limit?: number;
+  query?: string;
+};
+export function getVenues({
+  page = 1,
+  limit = 12,
+  query = "",
+}: GetVenuesOptions = {}) {
+  const params = new URLSearchParams({
+    page: String(page),
+    limit: String(limit),
+    sort: "created",
+    sortOrder: "desc",
+  });
+
+  if (query) {
+    params.set("q", query);
+
+    return apiFetch<VenuesResponse>(`/holidaze/venues/search?${params}`);
+  }
+  return apiFetch<VenuesResponse>(`/holidaze/venues?${params}`);
 }
 
 type VenueResponse = {

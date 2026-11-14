@@ -8,7 +8,7 @@ export default async function Header() {
       <section className="flex items-center justify-between">
         <Link
           href="/"
-          className="text-feedback-success-text font-italiana text-4xl font-normal dark:text-white"
+          className="text-feedback-success-text font-italiana text-5xl font-normal tracking-wider dark:text-white"
         >
           HOLIDAZE
         </Link>
