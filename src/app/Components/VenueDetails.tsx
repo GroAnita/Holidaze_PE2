@@ -63,6 +63,7 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
           bookings={venue.bookings ?? []}
           price={venue.price}
           isLoggedIn={Boolean(profile)}
+          venueId={venue.id}
         />
       </section>
 

@@ -11,6 +11,7 @@ type VenueStayPickerProps = {
   bookings: Booking[];
   price: number;
   isLoggedIn: boolean;
+  venueId: string;
 };
 
 function toLocalDate(isoString: string) {
@@ -42,6 +43,7 @@ const calendarColors = {
 } as CSSProperties;
 
 export default function VenueStayPicker({
+  venueId,
   maxGuests,
   bookings,
   price,
@@ -176,6 +178,7 @@ export default function VenueStayPicker({
 
       <div className="mt-8">
         <BookingSummary
+          venueId={venueId}
           range={range}
           nights={nights}
           guests={guests}

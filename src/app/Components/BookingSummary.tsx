@@ -1,6 +1,10 @@
+"use client";
 import type { DateRange } from "react-day-picker";
 import Button from "./Button";
-import { formatPrice } from "@/app/lib/format";
+import { formatPrice, toApiDate } from "@/app/lib/format";
+import { useActionState } from "react";
+import { createBookingAction } from "@/app/lib/api/bookingActions";
+import type { FormState } from "@/app/lib/api/auth/actions";
 
 type BookingSummaryProps = {
   range: DateRange | undefined;
@@ -8,6 +12,7 @@ type BookingSummaryProps = {
   guests: number;
   price: number;
   isLoggedIn: boolean;
+  venueId: string;
 };
 
 function formatDate(date: Date) {
@@ -19,6 +24,7 @@ function formatDate(date: Date) {
 }
 
 export default function BookingSummary({
+  venueId,
   range,
   nights,
   guests,
@@ -27,11 +33,14 @@ export default function BookingSummary({
 }: BookingSummaryProps) {
   const hasDates = nights > 0 && range?.from && range.to;
   const total = price * nights;
+  const [state, formAction, pending] = useActionState<FormState, FormData>(
+    createBookingAction,
+    {},
+  );
 
   return (
     <div className="bg-surface font-manrope text-text-primary w-full max-w-md rounded-xl p-6">
       <h3 className="text-feedback-success-text mb-4 text-xl">Your stay</h3>
-
       {hasDates ? (
         <>
           <p>
@@ -59,14 +68,45 @@ export default function BookingSummary({
           {formatPrice(price)} / night. Choose your dates to see the total.
         </p>
       )}
-
       <div className="mt-6 flex justify-end">
-        {isLoggedIn ? (
-          <Button disabled={!hasDates}>Reserve</Button>
-        ) : (
-          <Button href="/login">Log in to reserve</Button>
+        {state.message && (
+          <p
+            role="alert"
+            className="bg-feedback-error-background text-feedback-error-text mt-4 rounded-lg px-3 py-2 text-sm"
+          >
+            {state.message}
+          </p>
         )}
+
+        <div className="mt-6 flex justify-end">
+          {isLoggedIn ? (
+            <form action={formAction}>
+              <input type="hidden" name="venueId" value={venueId} />
+              <input type="hidden" name="guests" value={guests} />
+              {hasDates && (
+                <>
+                  <input
+                    type="hidden"
+                    name="dateFrom"
+                    value={toApiDate(range.from!)}
+                  />
+                  <input
+                    type="hidden"
+                    name="dateTo"
+                    value={toApiDate(range.to!)}
+                  />
+                </>
+              )}
+              <Button type="submit" disabled={!hasDates || pending}>
+                {pending ? "Reserving..." : "Reserve"}
+              </Button>
+            </form>
+          ) : (
+            <Button href="/login">Log in to reserve</Button>
+          )}
+        </div>
       </div>
+      );
     </div>
   );
 }

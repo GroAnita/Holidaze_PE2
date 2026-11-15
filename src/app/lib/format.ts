@@ -26,3 +26,10 @@ export function nightsBetween(fromIso: string, toIso: string) {
 export function pluralize(count: number, word: string) {
   return `${count} ${word}${count === 1 ? "" : "s"}`;
 }
+
+export function toApiDate(date: Date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}

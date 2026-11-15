@@ -77,7 +77,7 @@ export type Profile = {
   bio?: string;
   avatar?: Media;
   banner?: Media;
-  venueManager: boolean;
+  venueManager?: boolean;
 };
 
 export type Booking = {

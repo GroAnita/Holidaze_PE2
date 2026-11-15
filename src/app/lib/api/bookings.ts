@@ -18,3 +18,18 @@ export function getMyBookings(name: string, token: string) {
     { token },
   );
 }
+
+export type BookingPayload = {
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  venueId: string;
+};
+
+export function createBooking(payload: BookingPayload, token: string) {
+  return apiFetch<{ data: Booking }>(`/holidaze/bookings`, {
+    token,
+    method: "POST",
+    body: payload,
+  });
+}

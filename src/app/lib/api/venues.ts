@@ -64,3 +64,21 @@ export function getVenue(id: string) {
     `/holidaze/venues/${id}?_bookings=true&_owner=true`,
   );
 }
+
+export type VenuePayLoad = {
+  name: string;
+  description: string;
+  media: Media[];
+  price: number;
+  maxGuests: number;
+  meta: VenueMeta;
+  location: Partial<Location>;
+};
+
+export function createVenue(payload: VenuePayLoad, token: string) {
+  return apiFetch<VenueResponse>(`/holidaze/venues`, {
+    method: "POST",
+    body: payload,
+    token,
+  });
+}

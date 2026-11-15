@@ -8,6 +8,7 @@ import ProfileHeader from "../Components/ProfileHeader";
 import MyTrips from "../Components/MyTrips";
 import { getMyBookings } from "../lib/api/bookings";
 import MyVenues from "../Components/MyVenues";
+import BookingsAtMyVenues from "../Components/BookingsAtMyVenues";
 
 export const metadata: Metadata = { title: "My profile" };
 
@@ -49,8 +50,13 @@ async function ProfileContent() {
     <>
       <ProfileHeader profile={profile} />
       {profile.venueManager && (
-        <div className="mt-10">
-          <MyVenues venues={venues} />
+        <div>
+          <div className="mt-10">
+            <MyVenues venues={venues} />
+          </div>
+          <div className="mt-10">
+            <BookingsAtMyVenues venues={venues} />
+          </div>
         </div>
       )}
       <div className="mt-10">
