@@ -192,7 +192,7 @@ export default function VenueForm({ venue }: VenueFormProps) {
                   type="checkbox"
                   name={amenity.name}
                   defaultChecked={values[amenity.name] === "on"}
-                  className="h-4 w-4 accent-[var(--holidaze-cta-secondary)]"
+                  className="accent-holidaze-cta-secondary h-4 w-4"
                 />
                 {amenity.label}
               </label>

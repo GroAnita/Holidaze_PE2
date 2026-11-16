@@ -116,7 +116,7 @@ export default function MediaInput({
         <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {images.map((image, index) => (
             <li key={`${image.url}-${index}`} className="flex flex-col gap-1">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+              <div className="relative aspect-4/3 overflow-hidden rounded-lg">
                 <Image
                   src={image.url}
                   alt={image.alt || "Venue photo"}

@@ -8,8 +8,9 @@
   --holidaze-text-primary: #171918;
   --holidaze-text-muted: #505a35;
   --holidaze-border-control: #777f79;
-  --holidaze-action-background: #00f36d;
-  --holidaze-action-hover: #b4d72e;
+  --holidaze-action-background: #e8a6b5;
+  --holidaze-action-hover: #dc91a3;
+  --holidaze-button-border: #505a35;
   --holidaze-action-text: #171918;
   --holidaze-link: #505a35;
   --holidaze-footer: #384413;
@@ -25,6 +26,8 @@
   --holidaze-feedback-note-background: #e9ebe8;
   --holidaze-feedback-note-text: #424a44;
   --holidaze-cta-secondary: #505a35;
+  --holidaze-brand: #285337;
+  --holidaze-brand-accent: #e8a6b5;
 }
 
 /* Dark export has no footer token; it inherits the light footer #384413. */
@@ -50,6 +53,7 @@
   --holidaze-feedback-info-text: #b7d2f5;
   --holidaze-feedback-note-background: #242825;
   --holidaze-feedback-note-text: #c9cfca;
+  --holidaze-brand: #b8dcac;
 }
 
 @theme inline {
@@ -69,6 +73,7 @@
   --color-feedback-warning-background: var(
     --holidaze-feedback-warning-background
   );
+  --color-button-border: var(--holidaze-button-border);
   --color-cta-secondary: var(--holidaze-cta-secondary);
   --color-feedback-warning-text: var(--holidaze-feedback-warning-text);
   --color-feedback-success-background: var(
@@ -79,9 +84,50 @@
   --color-feedback-info-text: var(--holidaze-feedback-info-text);
   --color-feedback-note-background: var(--holidaze-feedback-note-background);
   --color-feedback-note-text: var(--holidaze-feedback-note-text);
+  --color-brand: var(--holidaze-brand);
+  --color-brand-accent: var(--holidaze-brand-accent);
 
   --font-manrope: var(--font-manrope);
   --font-playfair-display: var(--font-playfair-display);
   --font-italiana: var(--font-italiana);
   --font-source-sans-pro: var(--font-source-sans-pro);
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15em;
+  color: var(--holidaze-brand);
+}
+
+.brand-dot {
+  display: inline-block;
+  width: 0.18em;
+  height: 0.18em;
+  border-radius: 50%;
+  background: var(--holidaze-brand-accent);
+}
+
+.brand-logo:hover .brand-dot,
+.brand-logo:focus-visible .brand-dot {
+  animation: dot-bounce 600ms ease-out;
+}
+
+@keyframes dot-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-0.3em);
+  }
+  65% {
+    transform: translateY(-0.1em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo .brand-dot {
+    animation: none;
+  }
 }

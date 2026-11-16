@@ -9,10 +9,15 @@ export default async function Header() {
       <section className="flex items-center justify-between">
         <Link
           href="/"
-          className="text-feedback-success-text font-italiana text-5xl font-normal tracking-wider dark:text-white"
+          className="brand-logo text-5xl"
+          aria-label="Holidaze home"
         >
-          HOLIDAZE
+          <span className="text-feedback-success-text font-italiana font-normal tracking-wider dark:text-white">
+            HOLIDAZE
+          </span>
+          <span className="brand-dot" aria-hidden="true" />
         </Link>
+
         <div className="flex items-center gap-4">
           <Link href="/" className="text-feedback-success-text dark:text-white">
             Explore

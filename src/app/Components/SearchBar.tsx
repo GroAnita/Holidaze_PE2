@@ -26,7 +26,7 @@ export default function SearchBar() {
         <Button
           type="submit"
           variant="primary"
-          className="flex items-center justify-center gap-2"
+          className="border-button-border text-button-border flex items-center justify-center gap-2 border-2 font-bold"
         >
           <Search className="h-4 w-4" aria-hidden="true" />
           Find your destination
