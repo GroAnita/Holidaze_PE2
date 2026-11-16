@@ -8,6 +8,7 @@ import VenueMap from "./VenueMap";
 import VenueAbout from "./VenueAbout";
 import VenueStayPicker from "./VenueStayPicker";
 import { getProfile } from "@/app/lib/api/auth/session";
+import Button from "./Button";
 
 type VenueDetailsProps = {
   id: string;
@@ -38,6 +39,12 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
           rating={venue.rating}
         />
       </section>
+      {profile && profile.name === venue.owner?.name && (
+        <div className="mb-6 flex justify-end">
+          <Button href={`/venues/${venue.id}/edit`}>Edit venue</Button>
+        </div>
+      )}
+
       <section id="images">
         <VenueGallery media={venue.media} venueName={venue.name} />
       </section>
@@ -66,7 +73,6 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
           venueId={venue.id}
         />
       </section>
-
       <section id="policies" className="py-8">
         {/* coming later */}
       </section>

@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { createVenueAction } from "../lib/api/venueActions";
+import { createVenueAction, updateVenueAction } from "../lib/api/venueActions";
 import type { FormState } from "../lib/api/auth/actions";
 import Button from "./Button";
 import FormField, { inputStyles } from "./FormField";
 import MediaInput from "./MediaInput";
+import type { Venue } from "../lib/api/venues";
 
 const initialState: FormState = {};
 
@@ -17,7 +18,32 @@ const amenities = [
   { name: "pets", label: "Pet friendly" },
 ];
 
-export default function VenueForm() {
+function venueToValues(venue: Venue): Record<string, string> {
+  return {
+    name: venue.name,
+    description: venue.description,
+    price: String(venue.price),
+    maxGuests: String(venue.maxGuests),
+    address: venue.location.address ?? "",
+    city: venue.location.city ?? "",
+    zip: venue.location.zip ?? "",
+    country: venue.location.country ?? "",
+    wifi: venue.meta.wifi ? "on" : "",
+    parking: venue.meta.parking ? "on" : "",
+    breakfast: venue.meta.breakfast ? "on" : "",
+    pets: venue.meta.pets ? "on" : "",
+  };
+}
+
+type VenueFormProps = {
+  venue?: Venue;
+};
+
+export default function VenueForm({ venue }: VenueFormProps) {
+  const isEdit = Boolean(venue);
+  const action = venue
+    ? updateVenueAction.bind(null, venue.id)
+    : createVenueAction;
   const [state, formAction, pending] = useActionState(
     createVenueAction,
     initialState,
@@ -28,7 +54,7 @@ export default function VenueForm() {
   return (
     <div className="bg-background border-cta-secondary font-manrope w-full max-w-2xl rounded-2xl border-8 px-6 py-10 sm:px-10">
       <h1 className="text-text-primary text-center text-3xl">
-        Add your venue to{" "}
+        {isEdit ? "Edit your venue on " : "Add your venue to "}
         <span className="font-italiana text-feedback-success-text tracking-widest">
           HOLIDAZE
         </span>
@@ -80,7 +106,7 @@ export default function VenueForm() {
           )}
         </div>
 
-        <MediaInput error={errors.media} />
+        <MediaInput error={errors.media} initialImages={venue?.media} />
 
         <fieldset className="flex flex-col gap-4">
           <legend className="text-feedback-success-text mb-2 text-lg">
@@ -185,13 +211,19 @@ export default function VenueForm() {
 
         <div className="border-text-primary flex justify-center gap-4 border-t pt-6">
           <Link
-            href="/profile"
+            href={venue ? `/venues/${venue.id}` : "/profile"}
             className="bg-feedback-error-text text-surface rounded-lg px-6 py-2 font-semibold"
           >
             Cancel
           </Link>
           <Button type="submit" variant="primary" disabled={pending}>
-            {pending ? "Creating..." : "Create venue"}
+            {pending
+              ? isEdit
+                ? "Saving..."
+                : "Creating..."
+              : isEdit
+                ? "Save changes"
+                : "Create venue"}
           </Button>
         </div>
       </form>

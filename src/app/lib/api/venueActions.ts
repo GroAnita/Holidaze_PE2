@@ -1,11 +1,15 @@
 "use server";
 import { redirect } from "next/navigation";
 import { getToken } from "./auth/session";
-import { createVenue } from "./venues";
+import {
+  createVenue,
+  deleteVenue,
+  getVenues,
+  updateVenue,
+  type VenuePayLoad,
+} from "./venues";
 import { ApiError } from "./types";
 import type { FormState } from "./auth/actions";
-
-import { getVenues } from "./venues";
 
 export async function loadMoreVenues(page: number, query: string) {
   return getVenues({ page, query });
@@ -25,13 +29,14 @@ function isValidUrl(value: string) {
   }
 }
 
-export async function createVenueAction(
-  _prevState: FormState,
-  formData: FormData,
-): Promise<FormState> {
-  const token = await getToken();
-  if (!token) redirect("/login");
+function errorMessage(error: unknown) {
+  return error instanceof ApiError
+    ? error.message
+    : "Something went wrong. Please try again.";
+}
 
+// Shared by create and edit: reads the form, validates it and builds the payload
+function readVenueForm(formData: FormData) {
   const name = getText(formData, "name");
   const description = getText(formData, "description");
   const priceText = getText(formData, "price");
@@ -84,29 +89,70 @@ export async function createVenueAction(
   if (!Number.isInteger(maxGuests) || maxGuests < 1 || maxGuests > 100) {
     errors.maxGuests = "Guests must be a whole number from 1 to 100.";
   }
+
+  const payload: VenuePayLoad = {
+    name,
+    description,
+    media,
+    price,
+    maxGuests,
+    meta,
+    location: { address, city, zip, country },
+  };
+
+  return { payload, values, errors };
+}
+
+export async function createVenueAction(
+  _prevState: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const token = await getToken();
+  if (!token) redirect("/login");
+
+  const { payload, values, errors } = readVenueForm(formData);
   if (Object.keys(errors).length > 0) return { errors, values };
 
   try {
-    await createVenue(
-      {
-        name,
-        description,
-        media,
-        price,
-        maxGuests,
-        meta,
-        location: { address, city, zip, country },
-      },
-      token,
-    );
+    await createVenue(payload, token);
   } catch (error) {
-    return {
-      message:
-        error instanceof ApiError
-          ? error.message
-          : "Something went wrong. Please try again.",
-      values,
-    };
+    return { message: errorMessage(error), values };
+  }
+
+  redirect("/profile");
+}
+
+export async function updateVenueAction(
+  id: string,
+  _prevState: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const token = await getToken();
+  if (!token) redirect("/login");
+
+  const { payload, values, errors } = readVenueForm(formData);
+  if (Object.keys(errors).length > 0) return { errors, values };
+
+  try {
+    await updateVenue(id, payload, token);
+  } catch (error) {
+    return { message: errorMessage(error), values };
+  }
+
+  redirect(`/venues/${id}`);
+}
+
+export async function deleteVenueAction(
+  id: string,
+  _prevState: FormState,
+): Promise<FormState> {
+  const token = await getToken();
+  if (!token) redirect("/login");
+
+  try {
+    await deleteVenue(id, token);
+  } catch (error) {
+    return { message: errorMessage(error) };
   }
 
   redirect("/profile");

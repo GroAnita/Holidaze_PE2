@@ -42,3 +42,11 @@ export async function clearSession() {
   cookieStore.delete(TOKEN_COOKIE);
   cookieStore.delete(PROFILE_COOKIE);
 }
+
+export async function updateSessionProfile(profile: AuthProfile) {
+  const cookieStore = await cookies();
+  cookieStore.set(PROFILE_COOKIE, JSON.stringify(profile), {
+    ...cookieOptions,
+    httpOnly: false,
+  });
+}

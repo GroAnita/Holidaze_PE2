@@ -82,3 +82,18 @@ export function createVenue(payload: VenuePayLoad, token: string) {
     token,
   });
 }
+
+export function updateVenue(id: string, payload: VenuePayLoad, token: string) {
+  return apiFetch<{ data: Venue }>(`/holidaze/venues/${id}`, {
+    method: "PUT",
+    body: payload,
+    token,
+  });
+}
+
+export function deleteVenue(id: string, token: string) {
+  return apiFetch<void>(`/holidaze/venues/${id}`, {
+    method: "DELETE",
+    token,
+  });
+}

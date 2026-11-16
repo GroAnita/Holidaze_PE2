@@ -5,14 +5,16 @@ import { useState, type KeyboardEvent } from "react";
 import { X } from "lucide-react";
 import Button from "./Button";
 import { inputStyles } from "./FormField";
+import type { Media } from "../lib/api/types";
 
 const MAX_IMAGES = 5;
 
-type MediaItem = { url: string; alt: string };
-
 type MediaInputProps = {
   error?: string;
+  initialImages?: Media[];
 };
+
+type MediaItem = { url: string; alt: string };
 
 function isValidUrl(value: string) {
   try {
@@ -23,8 +25,13 @@ function isValidUrl(value: string) {
   }
 }
 
-export default function MediaInput({ error }: MediaInputProps) {
-  const [images, setImages] = useState<MediaItem[]>([]);
+export default function MediaInput({
+  error,
+  initialImages = [],
+}: MediaInputProps) {
+  const [images, setImages] = useState<MediaItem[]>(
+    initialImages.map((m) => ({ url: m.url, alt: m.alt ?? "" })),
+  );
   const [url, setUrl] = useState("");
   const [alt, setAlt] = useState("");
   const [urlError, setUrlError] = useState("");
