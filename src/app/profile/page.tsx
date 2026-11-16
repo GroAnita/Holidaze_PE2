@@ -9,20 +9,26 @@ import MyTrips from "../Components/MyTrips";
 import { getMyBookings } from "../lib/api/bookings";
 import MyVenues from "../Components/MyVenues";
 import BookingsAtMyVenues from "../Components/BookingsAtMyVenues";
+import BookingConfirmed from "../Components/BookingConfirmed";
 
 export const metadata: Metadata = { title: "My profile" };
 
-export default function ProfilePage() {
+export default function ProfilePage({ searchParams }: PageProps<"/profile">) {
   return (
     <main className="mx-auto w-full max-w-300 px-4 py-8">
       <Suspense fallback={<p>Loading profile...</p>}>
-        <ProfileContent />
+        <ProfileContent searchParams={searchParams} />
       </Suspense>
     </main>
   );
 }
 
-async function ProfileContent() {
+async function ProfileContent({
+  searchParams,
+}: {
+  searchParams: PageProps<"/profile">["searchParams"];
+}) {
+  const { booked } = await searchParams;
   const token = await getToken();
   const session = await getProfile();
   if (!token || !session) redirect("/login");
@@ -48,6 +54,7 @@ async function ProfileContent() {
 
   return (
     <>
+      {booked && <BookingConfirmed />}
       <ProfileHeader profile={profile} />
       {profile.venueManager && (
         <div>

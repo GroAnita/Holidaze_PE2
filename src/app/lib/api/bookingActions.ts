@@ -36,5 +36,5 @@ export async function createBookingAction(
     };
   }
 
-  redirect("/profile");
+  redirect("/profile?booked=1");
 }
