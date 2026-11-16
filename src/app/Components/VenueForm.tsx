@@ -44,11 +44,9 @@ export default function VenueForm({ venue }: VenueFormProps) {
   const action = venue
     ? updateVenueAction.bind(null, venue.id)
     : createVenueAction;
-  const [state, formAction, pending] = useActionState(
-    createVenueAction,
-    initialState,
-  );
-  const values = state.values ?? {};
+  const [state, formAction, pending] = useActionState(action, initialState);
+  const values = state.values ?? (venue ? venueToValues(venue) : {});
+
   const errors = state.errors ?? {};
 
   return (
@@ -192,7 +190,7 @@ export default function VenueForm({ venue }: VenueFormProps) {
                   type="checkbox"
                   name={amenity.name}
                   defaultChecked={values[amenity.name] === "on"}
-                  className="accent-holidaze-cta-secondary h-4 w-4"
+                  className="accent-cta-secondary h-4 w-4"
                 />
                 {amenity.label}
               </label>

@@ -142,10 +142,7 @@ export async function updateVenueAction(
   redirect(`/venues/${id}`);
 }
 
-export async function deleteVenueAction(
-  id: string,
-  _prevState: FormState,
-): Promise<FormState> {
+export async function deleteVenueAction(id: string): Promise<FormState> {
   const token = await getToken();
   if (!token) redirect("/login");
 

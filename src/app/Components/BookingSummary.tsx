@@ -1,10 +1,10 @@
 "use client";
 import type { DateRange } from "react-day-picker";
 import Button from "./Button";
-import { formatPrice, toApiDate } from "@/app/lib/format";
 import { useActionState } from "react";
 import { createBookingAction } from "@/app/lib/api/bookingActions";
 import type { FormState } from "@/app/lib/api/auth/actions";
+import { formatDate, formatPrice, toApiDate } from "@/app/lib/format";
 
 type BookingSummaryProps = {
   range: DateRange | undefined;
@@ -14,14 +14,6 @@ type BookingSummaryProps = {
   isLoggedIn: boolean;
   venueId: string;
 };
-
-function formatDate(date: Date) {
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-}
 
 export default function BookingSummary({
   venueId,

@@ -11,7 +11,7 @@ export function toLocalDate(isoString: string) {
 }
 
 export function formatDate(date: Date) {
-  return date.toLocaleDateString("nb-NO", {
+  return date.toLocaleDateString("en-GB", {
     year: "numeric",
     month: "short",
     day: "numeric",

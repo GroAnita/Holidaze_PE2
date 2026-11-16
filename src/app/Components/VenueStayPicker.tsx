@@ -5,6 +5,7 @@ import { DayPicker, type DateRange } from "react-day-picker";
 import "react-day-picker/style.css";
 import type { Booking } from "@/app/lib/api/types";
 import BookingSummary from "./BookingSummary";
+import { formatDate, toLocalDate } from "@/app/lib/format";
 
 type VenueStayPickerProps = {
   maxGuests: number;
@@ -14,18 +15,6 @@ type VenueStayPickerProps = {
   venueId: string;
 };
 
-function toLocalDate(isoString: string) {
-  return new Date(`${isoString.slice(0, 10)}T00:00`);
-}
-
-function formatDate(date?: Date) {
-  if (!date) return "Add date";
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-}
 function countNights(range?: DateRange) {
   if (!range?.from || !range.to) return 0;
   return Math.round(
@@ -115,7 +104,7 @@ export default function VenueStayPicker({
             <span className="flex flex-col">
               <span className="text-text-primary">Start date</span>
               <span className="text-text-primary">
-                {formatDate(range?.from)}
+                {range?.from ? formatDate(range.from) : "Add date"}
               </span>
             </span>
           </button>
@@ -130,7 +119,7 @@ export default function VenueStayPicker({
             <span className="flex flex-col">
               <span className="text-text-primary">End date</span>
               <span className="text-text-primary">
-                {formatDate(nights > 0 ? range?.to : undefined)}
+                {nights > 0 && range?.to ? formatDate(range.to) : "Add date"}
               </span>
             </span>
           </button>
