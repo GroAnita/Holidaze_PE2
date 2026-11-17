@@ -6,7 +6,7 @@ type ButtonProps = {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   className?: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "outline";
   disabled?: boolean;
 };
 
@@ -21,7 +21,9 @@ export default function Button({
 }: ButtonProps) {
   const variants = {
     primary: "bg-action-background text-action-text hover:bg-action-hover",
-    secondary: "bg-secondary-background text-secondary-text hover:bg-secondary-hover",
+    secondary:
+      "bg-secondary-background text-secondary-text hover:bg-secondary-hover",
+    outline: "border-2 border-hero-text text-hero-text hover:bg-hero-text/10",
   };
   const styles = `${variants[variant]} font-manrope rounded-full px-6 py-2 font-semibold disabled:cursor-not-allowed disabled:opacity-50 ${className}`;
   if (href) {
