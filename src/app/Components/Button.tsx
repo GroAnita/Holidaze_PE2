@@ -21,7 +21,7 @@ export default function Button({
 }: ButtonProps) {
   const variants = {
     primary: "bg-action-background text-action-text hover:bg-action-hover",
-    secondary: "bg-cta-secondary text-surface",
+    secondary: "bg-secondary-background text-secondary-text hover:bg-secondary-hover",
   };
   const styles = `${variants[variant]} font-manrope rounded-full px-6 py-2 font-semibold disabled:cursor-not-allowed disabled:opacity-50 ${className}`;
   if (href) {

@@ -50,7 +50,7 @@ export default function VenueForm({ venue }: VenueFormProps) {
   const errors = state.errors ?? {};
 
   return (
-    <div className="bg-background border-cta-secondary font-manrope w-full max-w-2xl rounded-2xl border-8 px-6 py-10 sm:px-10">
+    <div className="bg-background border-brand font-manrope w-full max-w-2xl rounded-2xl border-8 px-6 py-10 sm:px-10">
       <h1 className="text-text-primary text-center text-3xl">
         {isEdit ? "Edit your venue on " : "Add your venue to "}
         <span className="font-italiana text-feedback-success-text tracking-widest">
@@ -190,7 +190,7 @@ export default function VenueForm({ venue }: VenueFormProps) {
                   type="checkbox"
                   name={amenity.name}
                   defaultChecked={values[amenity.name] === "on"}
-                  className="accent-cta-secondary h-4 w-4"
+                  className="accent-cta-brand h-4 w-4"
                 />
                 {amenity.label}
               </label>

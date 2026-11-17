@@ -7,8 +7,8 @@ export const metadata: Metadata = { title: "Create account" };
 export default function RegisterPage() {
   return (
     <main className="flex flex-1 items-center justify-center px-4 py-16">
-      <div className="border-cta-secondary grid w-full max-w-5xl overflow-hidden rounded-2xl border-8 md:grid-cols-2">
-        <div className="bg-footer hidden flex-col items-center gap-6 px-8 py-10 text-center text-white md:flex">
+      <div className="border-brand grid w-full max-w-5xl overflow-hidden rounded-2xl border-8 md:grid-cols-2">
+        <div className="bg-footer hidden flex-col items-center gap-6 px-8 py-10 text-center text-footer-text md:flex">
           <p className="font-italiana text-5xl tracking-widest">Holidaze</p>
           <p className="font-manrope text-lg tracking-wide">
             Find your next somewhere

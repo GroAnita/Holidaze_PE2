@@ -12,7 +12,7 @@ export default function LoginForm() {
   const [state, formAction, pending] = useActionState(login, initialState);
 
   return (
-    <div className="bg-background border-cta-secondary font-manrope w-full max-w-xl rounded-2xl border-8 px-8 py-10">
+    <div className="bg-background border-brand font-manrope w-full max-w-xl rounded-2xl border-8 px-8 py-10">
       <h1 className="font-italiana text-text-primary text-center text-5xl tracking-widest">
         Welcome back
       </h1>

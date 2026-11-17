@@ -9,7 +9,7 @@ type ProfileHeaderProps = {
 
 export default function ProfileHeader({ profile }: ProfileHeaderProps) {
   return (
-    <section className="bg-surface border-cta-secondary font-manrope flex flex-col items-center gap-6 rounded-xl border-2 p-6 shadow-[6px_6px_0_var(--holidaze-cta-secondary)] sm:flex-row">
+    <section className="bg-surface border-brand font-manrope flex flex-col items-center gap-6 rounded-xl border-2 p-6 shadow-[6px_6px_0_var(--holidaze-brand)] sm:flex-row">
       <Avatar
         name={profile.name}
         avatar={profile.avatar}

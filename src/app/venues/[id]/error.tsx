@@ -24,7 +24,7 @@ export default function VenueError({
       <button
         type="button"
         onClick={() => retry()}
-        className="bg-cta-secondary text-surface font-manrope rounded-full px-6 py-2 font-semibold"
+        className="bg-cta-background text-secondary-text font-manrope hover:bg-secondary-hover rounded-full px-6 py-2 font-semibold"
       >
         Try Again
       </button>

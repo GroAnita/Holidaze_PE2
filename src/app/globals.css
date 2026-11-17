@@ -6,15 +6,23 @@
   --holidaze-background: #eeebdd;
   --holidaze-surface: #faf8f0;
   --holidaze-text-primary: #171918;
-  --holidaze-text-muted: #505a35;
+  --holidaze-text-muted: #525954;
   --holidaze-border-control: #777f79;
+  --holidaze-border-subtle: #c8c5b6;
   --holidaze-action-background: #e8a6b5;
   --holidaze-action-hover: #dc91a3;
-  --holidaze-button-border: #505a35;
   --holidaze-action-text: #171918;
-  --holidaze-link: #505a35;
-  --holidaze-footer: #384413;
-  --holidaze-focus-ring: #505a35;
+  --holidaze-brand: #285337;
+  --holidaze-secondary-background: #285337;
+  --holidaze-secondary-hover: #21462e;
+  --holidaze-secondary-text: #faf8f0;
+  --holidaze-link: #285337;
+  --holidaze-footer: #285337;
+  --holidaze-footer-text: #faf8f0;
+  --holidaze-focus-ring: #285337;
+  --holidaze-hero-panel: #21462e;
+  --holidaze-hero-text: #faf8f0;
+  --holidaze-hero-accent: #e8a6b5;
   --holidaze-feedback-error-background: #fce8e8;
   --holidaze-feedback-error-text: #8e2635;
   --holidaze-feedback-warning-background: #fff1cb;
@@ -25,12 +33,8 @@
   --holidaze-feedback-info-text: #284d7d;
   --holidaze-feedback-note-background: #e9ebe8;
   --holidaze-feedback-note-text: #424a44;
-  --holidaze-cta-secondary: #505a35;
-  --holidaze-brand: #285337;
-  --holidaze-brand-accent: #e8a6b5;
 }
 
-/* Dark export has no footer token; it inherits the light footer #384413. */
 .dark {
   color-scheme: dark;
   --holidaze-background: #171918;
@@ -38,11 +42,21 @@
   --holidaze-text-primary: #eeebdd;
   --holidaze-text-muted: #a8aeaa;
   --holidaze-border-control: #777f79;
-  --holidaze-action-background: #d5ff79;
-  --holidaze-action-hover: #b4d72e;
+  --holidaze-border-subtle: #424a44;
+  --holidaze-action-background: #e8a6b5;
+  --holidaze-action-hover: #dc91a3;
   --holidaze-action-text: #171918;
-  --holidaze-link: #d5ff3f;
-  --holidaze-focus-ring: #d5ff3f;
+  --holidaze-brand: #b6c7a8;
+  --holidaze-secondary-background: #b6c7a8;
+  --holidaze-secondary-hover: #c8d5be;
+  --holidaze-secondary-text: #171918;
+  --holidaze-link: #e8a6b5;
+  --holidaze-footer: #1a261f;
+  --holidaze-footer-text: #eeebdd;
+  --holidaze-focus-ring: #e8a6b5;
+  --holidaze-hero-panel: #21462e;
+  --holidaze-hero-text: #faf8f0;
+  --holidaze-hero-accent: #e8a6b5;
   --holidaze-feedback-error-background: #3d2028;
   --holidaze-feedback-error-text: #ffb4be;
   --holidaze-feedback-warning-background: #342c18;
@@ -53,7 +67,6 @@
   --holidaze-feedback-info-text: #b7d2f5;
   --holidaze-feedback-note-background: #242825;
   --holidaze-feedback-note-text: #c9cfca;
-  --holidaze-brand: #b8dcac;
 }
 
 @theme inline {
@@ -62,19 +75,26 @@
   --color-text-primary: var(--holidaze-text-primary);
   --color-text-muted: var(--holidaze-text-muted);
   --color-border-control: var(--holidaze-border-control);
+  --color-border-subtle: var(--holidaze-border-subtle);
   --color-action-background: var(--holidaze-action-background);
   --color-action-hover: var(--holidaze-action-hover);
   --color-action-text: var(--holidaze-action-text);
+  --color-brand: var(--holidaze-brand);
+  --color-secondary-background: var(--holidaze-secondary-background);
+  --color-secondary-hover: var(--holidaze-secondary-hover);
+  --color-secondary-text: var(--holidaze-secondary-text);
   --color-link: var(--holidaze-link);
   --color-footer: var(--holidaze-footer);
+  --color-footer-text: var(--holidaze-footer-text);
   --color-focus-ring: var(--holidaze-focus-ring);
+  --color-hero-panel: var(--holidaze-hero-panel);
+  --color-hero-text: var(--holidaze-hero-text);
+  --color-hero-accent: var(--holidaze-hero-accent);
   --color-feedback-error-background: var(--holidaze-feedback-error-background);
   --color-feedback-error-text: var(--holidaze-feedback-error-text);
   --color-feedback-warning-background: var(
     --holidaze-feedback-warning-background
   );
-  --color-button-border: var(--holidaze-button-border);
-  --color-cta-secondary: var(--holidaze-cta-secondary);
   --color-feedback-warning-text: var(--holidaze-feedback-warning-text);
   --color-feedback-success-background: var(
     --holidaze-feedback-success-background
@@ -84,8 +104,6 @@
   --color-feedback-info-text: var(--holidaze-feedback-info-text);
   --color-feedback-note-background: var(--holidaze-feedback-note-background);
   --color-feedback-note-text: var(--holidaze-feedback-note-text);
-  --color-brand: var(--holidaze-brand);
-  --color-brand-accent: var(--holidaze-brand-accent);
 
   --font-manrope: var(--font-manrope);
   --font-playfair-display: var(--font-playfair-display);
@@ -105,7 +123,7 @@
   width: 0.18em;
   height: 0.18em;
   border-radius: 50%;
-  background: var(--holidaze-brand-accent);
+  background: var(--holidaze-hero-accent);
 }
 
 .brand-logo:hover .brand-dot,
