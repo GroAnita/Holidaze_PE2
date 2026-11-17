@@ -9,6 +9,7 @@ type StatusCardProps = {
   text: string;
   image: string;
   actions: ReactNode;
+  showContactLink?: boolean;
 };
 
 export default function StatusCard({
@@ -18,6 +19,7 @@ export default function StatusCard({
   text,
   image,
   actions,
+  showContactLink,
 }: StatusCardProps) {
   return (
     <main className="flex flex-1 flex-col items-center px-4 py-12">
@@ -47,13 +49,14 @@ export default function StatusCard({
           className="mx-auto h-auto w-full max-w-lg"
         />
       </section>
-
-      <Link
-        href="/contact"
-        className="font-manrope text-link mt-10 underline underline-offset-4"
-      >
-        Need help? Contact us
-      </Link>
+      {showContactLink && (
+        <Link
+          href="/contact"
+          className="font-manrope text-link mt-10 underline underline-offset-4"
+        >
+          Need help? Contact us
+        </Link>
+      )}
     </main>
   );
 }

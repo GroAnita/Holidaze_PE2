@@ -48,7 +48,7 @@ export default function Footer() {
           <Link href="/contact" className="text-footer-text hover:underline">
             Contact
           </Link>
-          <Link href="/tos" className="text-footer-text hover:underline">
+          <Link href="/terms" className="text-footer-text hover:underline">
             Terms of Service
           </Link>
           <Link href="/privacy" className="text-footer-text hover:underline">
