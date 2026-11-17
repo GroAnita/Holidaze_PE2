@@ -98,7 +98,6 @@ export default function BookingSummary({
           )}
         </div>
       </div>
-      );
     </div>
   );
 }
