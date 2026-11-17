@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 import Header from "./Components/Header";
 import { Suspense } from "react";
+import Footer from "./Components/Footer";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Suspense>
         <hr className="border-border-control dark:border-white" />
         {children}
+        <Footer />
       </body>
     </html>
   );
