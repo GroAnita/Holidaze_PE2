@@ -20,7 +20,7 @@ export default function Button({
   disabled = false,
 }: ButtonProps) {
   const variants = {
-    primary: "bg-action-background text-action-text hover:bg-action-hover",
+    primary: "bg-action-background text-brand hover:bg-action-hover",
     secondary:
       "bg-secondary-background text-secondary-text hover:bg-secondary-hover",
     outline: "border-2 border-hero-text text-hero-text hover:bg-hero-text/10",

@@ -19,7 +19,10 @@ export default async function Header() {
         </Link>
 
         <div className="flex items-center gap-4">
-          <Link href="/" className="text-feedback-success-text dark:text-white">
+          <Link
+            href="/"
+            className="text-feedback-success-text font-playfair-display dark:text-white"
+          >
             Explore
           </Link>
           {profile ? (
@@ -27,7 +30,7 @@ export default async function Header() {
           ) : (
             <Link
               href="/login"
-              className="text-feedback-success-text dark:text-white"
+              className="text-feedback-success-text font-playfair-display dark:text-white"
             >
               LogIn
             </Link>

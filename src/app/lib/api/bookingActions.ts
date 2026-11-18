@@ -23,6 +23,9 @@ export async function createBookingAction(
   if (!Number.isInteger(guests) || guests < 1) {
     return { message: "Please choose how many guests." };
   }
+  if (!formData.has("terms")) {
+    return { message: "Please accept the Terms of Service to continue." };
+  }
 
   try {
     await createBooking({ venueId, dateFrom, dateTo, guests }, token);
