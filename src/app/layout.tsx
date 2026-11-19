@@ -6,9 +6,9 @@ import {
   Source_Sans_3,
 } from "next/font/google";
 import "./globals.css";
-import Header from "./Components/Header";
+import Header from "./Components/layout/Header";
 import { Suspense } from "react";
-import Footer from "./Components/Footer";
+import Footer from "./Components/layout/Footer";
 
 const manrope = Manrope({
   variable: "--font-manrope",

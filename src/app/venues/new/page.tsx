@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getProfile } from "../../lib/api/auth/session";
-import VenueForm from "../../Components/VenueForm";
+import VenueForm from "../../Components/venue/VenueForm";
 
 export const metadata: Metadata = { title: "Add venue" };
 

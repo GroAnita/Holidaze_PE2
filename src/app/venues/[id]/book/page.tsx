@@ -14,7 +14,7 @@ import {
   pluralize,
   toLocalDate,
 } from "../../../lib/format";
-import BookingConfirmForm from "../../../Components/BookinConfirmForm";
+import BookingConfirmForm from "../../../Components/booking/BookingConfirmForm";
 
 export const metadata: Metadata = { title: "Confirm your booking" };
 

@@ -4,8 +4,8 @@ import { notFound, redirect } from "next/navigation";
 import { getProfile } from "../../../lib/api/auth/session";
 import { getVenue } from "../../../lib/api/venues";
 import { ApiError } from "../../../lib/api/types";
-import VenueForm from "../../../Components/VenueForm";
-import DeleteVenueButton from "../../../Components/DeleteVenueButton";
+import VenueForm from "../../../Components/venue/VenueForm";
+import DeleteVenueButton from "../../../Components/venue/DeleteVenueButton";
 
 export const metadata: Metadata = { title: "Edit venue" };
 

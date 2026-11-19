@@ -1,10 +1,10 @@
 import { getVenues } from "./lib/api/venues";
 //import VenueCard from "./Components/VenueCard";
 import { Suspense } from "react";
-import Hero from "./Components/Hero";
+import Hero from "./Components/layout/Hero";
 import Link from "next/link";
-import VenueGrid from "./Components/VenueGrid";
-import SearchBar from "./Components/SearchBar";
+import VenueGrid from "./Components/venue/VenueGrid";
+import SearchBar from "./Components/layout/SearchBar";
 
 export default function Home({ searchParams }: PageProps<"/">) {
   return (
