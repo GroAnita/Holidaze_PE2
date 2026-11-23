@@ -47,7 +47,7 @@ async function ProfileContent({
     bookings = bookingsResponse.data;
     venues = venuesResponse.data;
   } catch (error) {
-    // Token expired or invalid – send them to log in again
+    // Token expired or invalid – send them back to log in again
     if (error instanceof ApiError && error.status === 401) redirect("/login");
     throw error;
   }

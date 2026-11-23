@@ -6,6 +6,7 @@ import "react-day-picker/style.css";
 import type { Booking } from "@/app/lib/api/types";
 import BookingSummary from "./BookingSummary";
 import { formatDate, toLocalDate } from "@/app/lib/format";
+import { Minus, Plus } from "lucide-react";
 
 type VenueStayPickerProps = {
   maxGuests: number;
@@ -146,23 +147,36 @@ export default function VenueStayPicker({
           )}
         </div>
 
-        <label className={boxStyles}>
+        <div className={boxStyles}>
           <Users className="h-5 w-5 shrink-0" aria-hidden="true" />
-          <span className="flex flex-col">
-            <span className="text-text-primary">Guests</span>
-            <select
-              value={guests}
-              onChange={(e) => setGuests(Number(e.target.value))}
-              className="text-text-primary bg-transparent outline-none"
+          <span className="text-text-primary">Guests</span>
+          <div className="ml-auto flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setGuests((g) => g - 1)}
+              disabled={guests <= 1}
+              aria-label="Remove a guest"
+              className="border-brand text-brand hover:bg-brand/10 flex h-8 w-8 items-center justify-center rounded-full border disabled:opacity-40"
             >
-              {Array.from({ length: maxGuests }, (_, i) => i + 1).map((n) => (
-                <option key={n} value={n}>
-                  {n} {n === 1 ? "guest" : "guests"}
-                </option>
-              ))}
-            </select>
-          </span>
-        </label>
+              <Minus className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <span
+              aria-live="polite"
+              className="text-text-primary min-w-16 text-center"
+            >
+              {guests} {guests === 1 ? "guest" : "guests"}
+            </span>
+            <button
+              type="button"
+              onClick={() => setGuests((g) => g + 1)}
+              disabled={guests >= maxGuests}
+              aria-label="Add a guest"
+              className="border-brand text-brand hover:bg-brand/10 flex h-8 w-8 items-center justify-center rounded-full border disabled:opacity-40"
+            >
+              <Plus className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="mt-8">

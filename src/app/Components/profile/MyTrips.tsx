@@ -26,7 +26,7 @@ export default function MyTrips({ bookings }: MyTripsProps) {
     <div className="font-manrope flex flex-col gap-10">
       <section>
         <h2 className="text-feedback-success-text border-text-primary mb-6 border-b pb-2 text-2xl">
-          Upcoming stays
+          Your Upcoming stays
         </h2>
         {upcoming.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

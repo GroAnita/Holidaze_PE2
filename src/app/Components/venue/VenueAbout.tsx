@@ -25,7 +25,7 @@ export default function VenueAbout({
   const addressLine = [cityLine, location.country].filter(Boolean).join(", ");
 
   return (
-    <div className="font-manrope flex flex-col gap-6">
+    <div className="font-manrope flex flex-col gap-6 rounded-xl bg-[#D5DACC] p-4">
       <div>
         <h2 className="text-feedback-success-text mb-3 text-xl font-bold">
           About this stay
