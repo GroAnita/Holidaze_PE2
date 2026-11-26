@@ -95,6 +95,7 @@ export default function VenueForm({ venue }: VenueFormProps) {
                 ? "description-hint description-error"
                 : "description-hint"
             }
+            maxLength={1000}
             className={inputStyles}
           />
           {errors.description && (

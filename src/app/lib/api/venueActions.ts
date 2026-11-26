@@ -79,6 +79,9 @@ function readVenueForm(formData: FormData) {
   const errors: Record<string, string> = {};
   if (!name) errors.name = "Please give your venue a name.";
   if (!description) errors.description = "Please add a description.";
+  if (description.length > 1000) {
+    errors.description = "Description cannot exceed 1000 characters.";
+  }
   if (media.length === 0) errors.media = "Please add at least one photo.";
   if (media.some((item) => !isValidUrl(item.url))) {
     errors.media = "One of the image URLs is not valid.";
