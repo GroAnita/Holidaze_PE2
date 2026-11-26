@@ -70,12 +70,12 @@ export default function BookingSummary({
           <Button
             href={bookHref}
             variant="primary"
-            className="w-full justify-center"
+            className="w-full justify-center text-center"
           >
             Reserve
           </Button>
         ) : (
-          <Button disabled className="w-full justify-center">
+          <Button disabled className="w-full justify-center text-center">
             Reserve
           </Button>
         )}

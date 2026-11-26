@@ -11,6 +11,7 @@ import { getProfile } from "@/app/lib/api/auth/session";
 import Button from "../ui/Button";
 import HouseRules from "./HouseRules";
 import ShareButton from "./ShareButton";
+import MobileBookingBar from "../booking/MobileBookingBar";
 
 type VenueDetailsProps = {
   id: string;
@@ -63,7 +64,7 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
             meta={venue.meta}
           />
         </section>
-        <aside id="your-stay" className="lg:sticky lg:top-4">
+        <aside id="your-stay" className="scroll-mt-4 lg:sticky lg:top-4">
           <VenueStayPicker
             maxGuests={venue.maxGuests}
             bookings={venue.bookings ?? []}
@@ -80,6 +81,7 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
       <section id="policies" className="scroll-mt-4 py-8">
         <HouseRules petsAllowed={Boolean(venue.meta.pets)} />
       </section>
+      <MobileBookingBar price={venue.price} />
     </main>
   );
 }
