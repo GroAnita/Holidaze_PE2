@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Heart, Share2 } from "lucide-react";
 
 const tabs = [
-  { id: "images", label: "Images" },
   { id: "about", label: "About" },
-  { id: "your-stay", label: "Your Stay" },
+  { id: "amenities", label: "Amenities" },
+  { id: "map", label: "Location" },
   { id: "policies", label: "Policies" },
 ];
 
@@ -15,7 +15,7 @@ type VenueTabsProps = {
 };
 
 export default function VenueTabs({ venueName }: VenueTabsProps) {
-  const [activeTab, setActiveTab] = useState("images");
+  const [activeTab, setActiveTab] = useState("about");
   const [saved, setSaved] = useState(false);
 
   async function handleShare() {
@@ -33,20 +33,20 @@ export default function VenueTabs({ venueName }: VenueTabsProps) {
   }
 
   return (
-    <div className="border-text-primary flex items-center justify-between border-b py-3">
+    <div className="border-border-subtle flex items-end justify-between gap-4 border-b">
       <nav aria-label="Venue sections">
-        <ul className="font-manrope text-md flex gap-12">
+        <ul className="font-manrope flex gap-6 text-sm sm:gap-10">
           {tabs.map((tab) => (
             <li key={tab.id}>
               <a
                 href={`#${tab.id}`}
                 onClick={() => setActiveTab(tab.id)}
                 aria-current={activeTab === tab.id ? "true" : undefined}
-                className={
+                className={`-mb-px block border-b-2 py-3 whitespace-nowrap ${
                   activeTab === tab.id
-                    ? "text-feedback-success-text font-semibold"
-                    : "text-text-primary hover:text-feedback-success-text"
-                }
+                    ? "border-hero-accent text-text-primary font-semibold"
+                    : "text-text-muted hover:text-text-primary border-transparent"
+                }`}
               >
                 {tab.label}
               </a>
@@ -55,7 +55,7 @@ export default function VenueTabs({ venueName }: VenueTabsProps) {
         </ul>
       </nav>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 pb-2">
         <button
           type="button"
           onClick={() => setSaved(!saved)}
