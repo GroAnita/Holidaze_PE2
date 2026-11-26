@@ -15,35 +15,42 @@ export default function VenueGallery({ media, venueName }: VenueGalleryProps) {
   if (!hero) return null;
 
   return (
-    <div className="venue-gallery grid h-96 grid-cols-4 grid-rows-2 gap-2">
-      <div className="relative col-span-2 row-span-2 h-full w-full">
+    <div className="grid h-72 gap-2 sm:h-96 lg:grid-cols-[1.2fr_1fr_1fr] lg:grid-rows-2">
+      <div className="relative h-full w-full lg:row-span-2">
         <Image
           src={hero.url}
           alt={hero.alt || venueName}
-          className="h-full w-full rounded-lg object-cover"
+          className="rounded-lg object-cover"
           fill
+          preload
+          sizes="(max-width: 1024px) 100vw, 40vw"
         />
       </div>
       {thumbnails.map((item, index) => (
-        <div key={`thumbnail-${index}`} className="relative h-full w-full">
+        <div
+          key={`thumbnail-${index}`}
+          className="relative hidden h-full w-full lg:block"
+        >
           <Image
             src={item.url}
             alt={item.alt || venueName}
-            className="h-full w-full rounded-lg object-cover"
+            className="rounded-lg object-cover"
             fill
+            sizes="25vw"
           />
         </div>
       ))}
       {placeholderThumbnails.map((_, index) => (
         <div
-          key={`placeholderThumbnails-${index}`}
-          className="relative h-full w-full"
+          key={`placeholder-${index}`}
+          className="relative hidden h-full w-full lg:block"
         >
           <Image
             src="/gallery-placeholder.png"
-            alt="No Image available"
-            className="h-full w-full rounded-lg object-cover"
+            alt=""
+            className="rounded-lg object-cover"
             fill
+            sizes="25vw"
           />
         </div>
       ))}
