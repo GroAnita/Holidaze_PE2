@@ -31,7 +31,7 @@ export default function BookingSummary({
     : undefined;
 
   return (
-    <div className="bg-surface font-manrope text-text-primary w-full max-w-md rounded-xl p-6">
+    <div className="font-manrope text-text-primary w-full">
       <h3 className="text-feedback-success-text mb-4 text-xl">Your stay</h3>
       {hasDates ? (
         <>
@@ -61,15 +61,23 @@ export default function BookingSummary({
         </p>
       )}
 
-      <div className="mt-6 flex justify-end">
+      <div className="mt-6 flex">
         {!isLoggedIn ? (
-          <Button href="/login">Log in to reserve</Button>
+          <Button href="/login" className="w-full justify-center">
+            Log in to reserve
+          </Button>
         ) : bookHref ? (
-          <Button href={bookHref} variant="primary">
+          <Button
+            href={bookHref}
+            variant="primary"
+            className="w-full justify-center"
+          >
             Reserve
           </Button>
         ) : (
-          <Button disabled>Reserve</Button>
+          <Button disabled className="w-full justify-center">
+            Reserve
+          </Button>
         )}
       </div>
     </div>

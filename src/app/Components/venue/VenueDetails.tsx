@@ -31,7 +31,7 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
   const profile = await getProfile();
 
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-8">
+    <main className="mx-auto flex w-full max-w-6xl flex-col px-4 py-8">
       <section className="mx-auto mb-8">
         <VenueHeader
           name={venue.name}
@@ -51,7 +51,7 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
       <div className="mt-6">
         <VenueTabs venueName={venue.name} />
       </div>
-      <div className="grid gap-12 py-8 md:grid-cols-2">
+      <div className="grid gap-12 py-8 lg:grid-cols-[3fr_2fr] lg:items-start">
         <section id="about">
           <VenueAbout
             description={venue.description}
@@ -60,22 +60,21 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
             location={venue.location}
           />
         </section>
-        <section id="map">
-          <VenueMap location={venue.location} venueName={venue.name} />
-        </section>
+        <aside id="your-stay" className="lg:sticky lg:top-4">
+          <VenueStayPicker
+            maxGuests={venue.maxGuests}
+            bookings={venue.bookings ?? []}
+            price={venue.price}
+            isLoggedIn={Boolean(profile)}
+            venueId={venue.id}
+          />
+        </aside>
       </div>
-      <section id="your-stay" className="py-8">
-        <VenueStayPicker
-          maxGuests={venue.maxGuests}
-          bookings={venue.bookings ?? []}
-          price={venue.price}
-          isLoggedIn={Boolean(profile)}
-          venueId={venue.id}
-        />
+      <section id="map" className="py-8">
+        <VenueMap location={venue.location} venueName={venue.name} />
       </section>
-      <section id="policies" className="py-8">
-        {/* coming later */}
-      </section>
+
+      <section id="policies" className="py-8"></section>
     </main>
   );
 }

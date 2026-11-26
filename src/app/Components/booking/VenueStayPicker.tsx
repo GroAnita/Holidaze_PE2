@@ -24,7 +24,7 @@ function countNights(range?: DateRange) {
 }
 
 const boxStyles =
-  "bg-action-background/30 border-text-primary focus-within:ring-focus-ring flex w-full items-center gap-4 rounded-xl border px-6 py-2 text-left focus-within:ring-2";
+  "bg-action-background/80 border-text-primary focus-within:ring-focus-ring flex w-full items-center gap-4 rounded-xl border px-4 py-2 text-left focus-within:ring-2";
 
 const calendarColors = {
   "--rdp-accent-color": "var(--holidaze-feedback-success-text)",
@@ -85,16 +85,13 @@ export default function VenueStayPicker({
   }
 
   return (
-    <div className="font-manrope">
+    <div className="font-manrope bg-surface rounded-xl p-6 shadow-md">
       <h2 className="text-feedback-success-text mb-6 text-2xl">
         When do you arrive
       </h2>
 
-      <div className="grid gap-6 md:grid-cols-3">
-        <div
-          ref={datesRef}
-          className="relative grid gap-6 md:col-span-2 md:grid-cols-2"
-        >
+      <div className="grid gap-4">
+        <div ref={datesRef} className="relative grid grid-cols-2 gap-4">
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
@@ -179,7 +176,7 @@ export default function VenueStayPicker({
         </div>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-6">
         <BookingSummary
           venueId={venueId}
           range={range}
