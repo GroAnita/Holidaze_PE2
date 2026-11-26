@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, Share2 } from "lucide-react";
 
 const tabs = [
   { id: "about", label: "About" },
@@ -10,30 +9,11 @@ const tabs = [
   { id: "policies", label: "Policies" },
 ];
 
-type VenueTabsProps = {
-  venueName: string;
-};
-
-export default function VenueTabs({ venueName }: VenueTabsProps) {
+export default function VenueTabs() {
   const [activeTab, setActiveTab] = useState("about");
-  const [saved, setSaved] = useState(false);
-
-  async function handleShare() {
-    const url = window.location.href;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: venueName,
-          url,
-        });
-      } catch {}
-    } else {
-      await navigator.clipboard.writeText(url);
-    }
-  }
 
   return (
-    <div className="border-border-subtle flex items-end justify-between gap-4 border-b">
+    <div className="border-border-subtle border-b">
       <nav aria-label="Venue sections">
         <ul className="font-manrope flex gap-6 text-sm sm:gap-10">
           {tabs.map((tab) => (
@@ -54,29 +34,6 @@ export default function VenueTabs({ venueName }: VenueTabsProps) {
           ))}
         </ul>
       </nav>
-
-      <div className="flex gap-2 pb-2">
-        <button
-          type="button"
-          onClick={() => setSaved(!saved)}
-          aria-pressed={saved}
-          className="border-text-primary text-feedback-success-text font-manrope flex items-center gap-2 rounded-xl border px-3 py-2 text-sm"
-        >
-          <Heart
-            className="h-6 w-6 text-red-500"
-            fill={saved ? "currentColor" : "none"}
-          />
-          {saved ? "Saved" : "Save"}
-        </button>
-        <button
-          type="button"
-          onClick={handleShare}
-          className="border-text-primary text-feedback-success-text font-manrope flex items-center gap-2 rounded-xl border px-3 py-2 text-sm"
-        >
-          <Share2 className="h-6 w-6 text-green-500" />
-          Share
-        </button>
-      </div>
     </div>
   );
 }

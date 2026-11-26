@@ -10,6 +10,7 @@ import VenueStayPicker from "../booking/VenueStayPicker";
 import { getProfile } from "@/app/lib/api/auth/session";
 import Button from "../ui/Button";
 import HouseRules from "./HouseRules";
+import ShareButton from "./ShareButton";
 
 type VenueDetailsProps = {
   id: string;
@@ -33,24 +34,26 @@ export default async function VenueDetails({ id }: VenueDetailsProps) {
 
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col px-4 py-8">
-      <section className="mx-auto mb-8">
+      <section className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <VenueHeader
           name={venue.name}
           location={venue.location}
           rating={venue.rating}
+          ownerName={venue.owner?.name}
         />
-      </section>
-      {profile && profile.name === venue.owner?.name && (
-        <div className="mb-6 flex justify-end">
-          <Button href={`/venues/${venue.id}/edit`}>Edit venue</Button>
+        <div className="flex gap-4">
+          {profile && profile.name === venue.owner?.name && (
+            <Button href={`/venues/${venue.id}/edit`}>Edit venue</Button>
+          )}
+          <ShareButton venueName={venue.name} />
         </div>
-      )}
+      </section>
 
       <section id="images">
         <VenueGallery media={venue.media} venueName={venue.name} />
       </section>
       <div className="mt-6">
-        <VenueTabs venueName={venue.name} />
+        <VenueTabs />
       </div>
       <div className="grid gap-12 py-8 lg:grid-cols-[3fr_2fr] lg:items-start">
         <section id="about">

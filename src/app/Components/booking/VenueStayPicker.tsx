@@ -24,7 +24,7 @@ function countNights(range?: DateRange) {
 }
 
 const boxStyles =
-  "bg-action-background/80 border-text-primary focus-within:ring-focus-ring flex w-full items-center gap-4 rounded-xl border px-4 py-2 text-left focus-within:ring-2";
+  "bg-white border-text-primary focus-within:ring-focus-ring flex w-full items-center gap-4 rounded-xl border px-4 py-2 text-left focus-within:ring-2";
 
 const calendarColors = {
   "--rdp-accent-color": "var(--holidaze-feedback-success-text)",
