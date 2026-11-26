@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Venue } from "../../lib/api/venues";
+import PhotoDialog from "./PhotoDialog";
 
 type VenueGalleryProps = {
   media: Venue["media"];
@@ -25,6 +26,9 @@ export default function VenueGallery({ media, venueName }: VenueGalleryProps) {
           preload
           sizes="(max-width: 1024px) 100vw, 40vw"
         />
+        {media.length > 1 && (
+          <PhotoDialog media={media} venueName={venueName} />
+        )}
       </div>
       {thumbnails.map((item, index) => (
         <div
